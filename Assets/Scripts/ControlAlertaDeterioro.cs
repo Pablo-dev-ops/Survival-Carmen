@@ -13,7 +13,7 @@ public class ControlAlertaDeterioro : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        marcoRojo.enabled = false; // Desactiva el marco rojo al inicio
+         marcoRojo.color = new Color (1f, 1f, 1f, 0f); // Desactiva el marco rojo al inicio
     }
 
     // Update is called once per frame
