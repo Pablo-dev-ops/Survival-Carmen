@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ControlInteraccion : MonoBehaviour
 {
@@ -70,6 +71,22 @@ public class ControlInteraccion : MonoBehaviour
 
         mensajeTexto.text = string.Format("<b>[E]</b> {0}", interactuable.ObtenerMensajeInteractuable()); // Establece el mensaje de texto
     }
+    public void OnInteractuarInput(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            // Aquí puedes agregar la lógica para interactuar con objetos
+            Debug.Log("Interacción iniciada");
+            interactuable.OnInteractuar(); // Llama al método OnInteractuar del objeto interactuable
+            objetoInteractuable = null; // Establece el objeto a null
+            interactuable = null; // Establece el interactuable a null
+            mensajeTexto.gameObject.SetActive(false); // Desactiva el objeto de texto
+        }
+    }
+    // public void OnInteractuar()
+    // {
+    //   Destroy(gameObject); // Destruye el objeto
+    // }
 }
 public interface IInteractuable
 {

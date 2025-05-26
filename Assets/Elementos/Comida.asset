@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Comida
   m_EditorClassIdentifier: 
   nombre: Tronchocarne
-  descripcion: 
-  icono: {fileID: 0}
+  descripcion: Un troncho de carne capaz de revivir al mismisimo Gilgamesh
+  icono: {fileID: 21300000, guid: cbde5af069b3d3545ae6c9efcba9701d, type: 3}
   prefab: {fileID: 690533069567950304, guid: 65742bc0e0a5037438cd432525629c70, type: 3}

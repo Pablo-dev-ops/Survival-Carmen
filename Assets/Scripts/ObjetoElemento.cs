@@ -23,5 +23,6 @@ public class ObjetoElemento : MonoBehaviour, IInteractuable
         // Aquí puedes agregar la lógica que deseas ejecutar al interactuar con el objeto
 
         Destroy(gameObject); // Destruye el objeto al interactuar
+        ControlInventario.instancia.AnadirElemento(elemento); // Agrega el elemento al inventario
     }
 }

@@ -115,6 +115,8 @@ public class ControlJugador : MonoBehaviour
         }
         return false; //Si no ha colisionado con nada, devolvemos false
     }
+
+    
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
