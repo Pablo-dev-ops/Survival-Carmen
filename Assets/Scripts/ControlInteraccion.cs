@@ -40,11 +40,11 @@ public class ControlInteraccion : MonoBehaviour
             // Crea un rayo desde la cámara hacia el punto donde está mirando
             Ray rayo = camara.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
             RaycastHit hit;
-            Debug.Log("Lanzando rayo"); // Muestra en la consola que se está lanzando el rayo
+            //Debug.Log("Lanzando rayo"); // Muestra en la consola que se está lanzando el rayo
             // Si el rayo colisiona con un objeto
             if (Physics.Raycast(rayo, out hit, distanciaChequeo, capaChequeo))
             {
-                Debug.Log("Colisiona con: " + hit.collider.gameObject.name); // Muestra el nombre del objeto colisionado en la consola
+                //Debug.Log("Colisiona con: " + hit.collider.gameObject.name); // Muestra el nombre del objeto colisionado en la consola
                 if (hit.collider.gameObject != objetoInteractuable)
                 {
                     objetoInteractuable = hit.collider.gameObject; // Obtiene el objeto colisionado
@@ -67,7 +67,7 @@ public class ControlInteraccion : MonoBehaviour
     private void EstablecerMensajeTexto()
     {
         mensajeTexto.gameObject.SetActive(true); // Activa el objeto de texto
-        Debug.Log("Colisiona"); // Muestra el nombre del objeto colisionado en la consola
+        //Debug.Log("Colisiona"); // Muestra el nombre del objeto colisionado en la consola
 
         mensajeTexto.text = string.Format("<b>[E]</b> {0}", interactuable.ObtenerMensajeInteractuable()); // Establece el mensaje de texto
     }
@@ -76,7 +76,7 @@ public class ControlInteraccion : MonoBehaviour
         if (context.phase == InputActionPhase.Started)
         {
             // Aquí puedes agregar la lógica para interactuar con objetos
-            Debug.Log("Interacción iniciada");
+            //Debug.Log("Interacción iniciada");
             interactuable.OnInteractuar(); // Llama al método OnInteractuar del objeto interactuable
             objetoInteractuable = null; // Establece el objeto a null
             interactuable = null; // Establece el interactuable a null

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEditor.VersionControl;
+
 
 public class ElementoEstanteriaUI : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public void Establecer(ElementoEstanteria elemento)
         elementoActual = elemento;
 
         // Establece el sprite del botón
-        imagenElemento.gameObject.SetActive(true); // Asegúrate de que la imagen esté activa
+        imagenElemento.enabled = true; // Asegúrate de que la imagen esté activa
         imagenElemento.sprite = elemento.elemento.icono;
         // Establece el texto del botón
         textoElemento.text = elemento.cantidad>1 ? elemento.cantidad.ToString() :string.Empty; // Muestra la cantidad si es mayor a 1
@@ -32,7 +32,7 @@ public void Establecer(ElementoEstanteria elemento)
         elementoActual = null;
 
         //no se elimina el elemento, se desactiva para poder reutilizarlo
-        imagenElemento.gameObject.SetActive(false); // Desactiva la imagen
+        imagenElemento.enabled = false; // Desactiva la imagen
         textoElemento.text = ""; // Limpia el texto
     }
 

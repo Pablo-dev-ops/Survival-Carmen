@@ -7,7 +7,7 @@ public class ObjetoElemento : MonoBehaviour, IInteractuable
     public DatosElemento elemento;
     public string ObtenerMensajeInteractuable()
     {
-         Debug.Log("Colisiona");
+        //Debug.Log("Colisiona");
         return "Recoges " + elemento.nombre; // Mensaje al recoger el objeto
                         // Muestra el nombre del objeto colisionado en la consola
 

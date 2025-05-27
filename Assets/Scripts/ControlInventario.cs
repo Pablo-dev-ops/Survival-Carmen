@@ -103,9 +103,10 @@ public class ControlInventario : MonoBehaviour
             ActualizarUI();
             return;
         }
-
+        
         ElementoEstanteria objetoVacio = ObtenerObjetoVacio();
-        if (objetoVacio == null)
+        //Debug.Log(objetoVacio);
+        if (objetoVacio != null)
         {
             // Si no hay espacio en el inventario, no se puede añadir el elemento
             Debug.Log("No hay espacio en el inventario");
@@ -150,7 +151,7 @@ public class ControlInventario : MonoBehaviour
         }
         return null;
     }
-
+    //devuelve el primer espacio vacio del casillero o null si esta todo ocupado
     ElementoEstanteria ObtenerObjetoVacio()
     {
         for (int x = 0; x < elementosEstanteria.Length; x++)
@@ -163,23 +164,6 @@ public class ControlInventario : MonoBehaviour
 
     public void ElementoSeleccionado(int indice)
     {
-        if (elementosEstanteria[indice] == null)
-            return;
-
-        elementoSeleccionado = elementosEstanteria[indice];
-        indiceElementoSeleccionado = indice;
-
-        nombreElementoSeleccionado.text = elementoSeleccionado.elemento.nombre;
-        descripcionElementoSeleccionado.text = elementoSeleccionado.elemento.descripcion;
-
-        botonSoltar.SetActive(true);
-        botonUsar.SetActive(true);
-    }
-
-    void EliminarElementoSeleccionado(int indice)
-    {
-        // Elimina el elemento seleccionado del inventario
-        // y actualiza la interfaz de usuario
         //si no existe casilla para ese índice, no se hace nada
         if (elementosEstanteria[indice].elemento == null)
             return;
@@ -194,6 +178,24 @@ public class ControlInventario : MonoBehaviour
         //se habilitan los botones
         botonUsar.SetActive(true);
         botonSoltar.SetActive(true);
+    }
+
+    void EliminarElementoSeleccionado(int indice)
+    {
+        // Elimina el elemento seleccionado del inventario
+        // y actualiza la interfaz de usuario
+        //si no existe casilla para ese índice, no se hace nada
+        elementoSeleccionado.cantidad--;
+
+        //si al decrementar es 0, hay que borrarlo del hueco
+        if (elementoSeleccionado.cantidad == 0)
+        {
+            elementoSeleccionado.elemento = null;
+            LimpiarVentanaElementoSeleccionado();
+        }
+
+        //siempre hay qeu actualizar la ventana tras añadir o eliminar
+        ActualizarUI();
     }
     void LimpiarVentanaElementoSeleccionado()
     {
