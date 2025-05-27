@@ -25,14 +25,15 @@ public class ControlInventario : MonoBehaviour
     private int indiceElementoSeleccionado;
     public TextMeshProUGUI nombreElementoSeleccionado;
     public TextMeshProUGUI descripcionElementoSeleccionado;
-
-
+    public TextMeshProUGUI cualidad1ElementoSeleccionado;
+    public TextMeshProUGUI cualidad2ElementoSeleccionado;
 
     private ControlJugador controlJugador;
     public GameObject botonUsar;
     public GameObject botonSoltar;
     public static ControlInventario instancia;
     private ControlIndicador controladorIndicadores;
+    public float cantidadElemento;
 
     void Awake()
     {
@@ -73,14 +74,14 @@ public class ControlInventario : MonoBehaviour
             ventanaInventario.SetActive(false);
             //onCerrarInventario.Invoke();
             //desactivo ratón y activo cam
-            //controlJugador.PonerQuitarPunteroRaton(false);
+            controlJugador.ModoInventario(false);
         }
         else
         {
             ventanaInventario.SetActive(true);
             //onAbrirInventario.Invoke();
             LimpiarVentanaElementoSeleccionado();
-            //controlJugador.PonerQuitarPunteroRaton(true);
+            controlJugador.ModoInventario(true);
         }
 
     }
@@ -121,7 +122,7 @@ public class ControlInventario : MonoBehaviour
     // Método para eliminar un elemento del inventario y soltarlo en la escena
     public void SoltarElemento(DatosElemento datosElemento)
     {
-
+        Instantiate(datosElemento.prefab, posicionSoltar.position, Quaternion.Euler(Vector3.one * UnityEngine.Random.value * 360f)); // Rotación aleatoria para un efecto más realista
 
 
     }
@@ -179,13 +180,28 @@ public class ControlInventario : MonoBehaviour
     {
         // Elimina el elemento seleccionado del inventario
         // y actualiza la interfaz de usuario
+        //si no existe casilla para ese índice, no se hace nada
+        if (elementosEstanteria[indice].elemento == null)
+            return;
 
+        //se asigna el elemento y sus propiedades
+        elementoSeleccionado = elementosEstanteria[indice];
+        indiceElementoSeleccionado = indice;
+
+        nombreElementoSeleccionado.text = elementoSeleccionado.elemento.nombre;
+        descripcionElementoSeleccionado.text = elementoSeleccionado.elemento.descripcion;
+
+        //se habilitan los botones
+        botonUsar.SetActive(true);
+        botonSoltar.SetActive(true);
     }
     void LimpiarVentanaElementoSeleccionado()
     {
         elementoSeleccionado = null;
         nombreElementoSeleccionado.text = string.Empty;
         descripcionElementoSeleccionado.text = string.Empty;
+        cualidad1ElementoSeleccionado.text = string.Empty;
+        cualidad2ElementoSeleccionado.text = string.Empty;
 
         //se deshabilitan los botones
         botonUsar.SetActive(false);
@@ -202,28 +218,28 @@ public class ControlInventario : MonoBehaviour
         //¿está activo en la jerarquía?
         return ventanaInventario.activeInHierarchy;
     }
-    // public void OnBotonUsar() //eventos al pulsar el botón usar
-    // {
-    //     //se chequea el indicador que hay que modificar al usar
-    //     switch(elementoSeleccionado.elemento.tipo)
-    //     {
-    //         case TipoUsoElemento.Salud:
-    //             controladorIndicadores.Recuperarse(cantidadElemento);
-    //             break;
-    //         case TipoUsoElemento.Hambre:
-    //             controladorIndicadores.Comer(cantidadElemento);
-    //             break;
-    //         case TipoUsoElemento.Sed:
-    //             controladorIndicadores.Beber(cantidadElemento);
-    //             break;
-    //         case TipoUsoElemento.Descanso:
-    //             controladorIndicadores.Descansar(cantidadElemento);
-    //             break;
-    //     }
+    public void OnBotonUsar() //eventos al pulsar el botón usar
+    {
+        //se chequea el indicador que hay que modificar al usar
+        switch(elementoSeleccionado.elemento.tipo)
+        {
+            case TipoUsoElemento.Salud:
+                controladorIndicadores.Recuperar(cantidadElemento);
+                break;
+            case TipoUsoElemento.Comida:
+                controladorIndicadores.Comer(cantidadElemento);
+                break;
+            case TipoUsoElemento.Bebida:
+                controladorIndicadores.Beber(cantidadElemento);
+                break;
+            case TipoUsoElemento.Descanso:
+                controladorIndicadores.Dormir(cantidadElemento);
+                break;
+        }
 
-    //     //tras usarlo, hay que eliminarlo del HUD de invemntario
-    //     EliminarElementoSeleccionado();
-    // }
+        //tras usarlo, hay que eliminarlo del HUD de invemntario
+        EliminarElementoSeleccionado();
+    }
 
     void EliminarElementoSeleccionado()
     {
@@ -239,7 +255,7 @@ public class ControlInventario : MonoBehaviour
         //siempre hay qeu actualizar la ventana tras añadir o eliminar
         ActualizarUI();
     }
-    public void OnBotonSoltar(InputAction.CallbackContext context)
+    public void OnBotonSoltar()
     {
         SoltarElemento(elementoSeleccionado.elemento);
         EliminarElementoSeleccionado();

@@ -38,7 +38,7 @@ public void Establecer(ElementoEstanteria elemento)
 
     public void OnButtonClick()
     {
-        
+        ControlInventario.instancia.ElementoSeleccionado(indice); // Llama al método ElementoSeleccionado en ControlInventario
     }
 
     // Start is called before the first frame update

@@ -7711,6 +7711,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4385080170327957909, guid: ff62b58c5a9ea164fa8ddf8038e10cd1, type: 3}
   m_PrefabInstance: {fileID: 848772500}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &855310964
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 855310965}
+  m_Layer: 0
+  m_Name: PosicionSoltar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &855310965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 855310964}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.124, y: 0.462, z: 2.079}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1217102899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &914714163
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9138,7 +9169,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1126511879}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1217102905}
+        m_TargetAssemblyTypeName: ControlInventario, Assembly-CSharp
+        m_MethodName: OnBotonUsar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1126511879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9839,6 +9882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1136385243}
+  - {fileID: 855310965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 183.496, z: 0}
 --- !u!114 &1217102901
@@ -10062,12 +10106,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiElementosEstanteria: []
   elementosEstanteria: []
-  posicionSoltar: {fileID: 0}
+  posicionSoltar: {fileID: 855310965}
   ventanaInventario: {fileID: 1358827263}
   nombreElementoSeleccionado: {fileID: 458482515}
   descripcionElementoSeleccionado: {fileID: 1899263336}
+  cualidad1ElementoSeleccionado: {fileID: 418184634}
+  cualidad2ElementoSeleccionado: {fileID: 1157953201}
   botonUsar: {fileID: 1126511876}
   botonSoltar: {fileID: 1883618817}
+  cantidadElemento: 0
 --- !u!1001 &1219920501
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10479,6 +10526,11 @@ Transform:
   - {fileID: 5415794556387052119}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1291525648 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 690533069567950304, guid: 65742bc0e0a5037438cd432525629c70, type: 3}
+  m_PrefabInstance: {fileID: 5415794556387052118}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1293776774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14243,7 +14295,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1883618820}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1217102905}
+        m_TargetAssemblyTypeName: ControlInventario, Assembly-CSharp
+        m_MethodName: OnBotonSoltar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1883618820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15960,6 +16024,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5390909958561122359, guid: 29b0f81202365fc45967ace6d7bbc918, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2442213012118998786}
+    - targetCorrespondingSourceObject: {fileID: 5390909958561122359, guid: 29b0f81202365fc45967ace6d7bbc918, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2442213012118998788}
     - targetCorrespondingSourceObject: {fileID: 7543790491563953964, guid: 29b0f81202365fc45967ace6d7bbc918, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1696280518}
@@ -15990,6 +16057,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.175, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &2442213012118998788
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470777128}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5415794556387052118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16045,13 +16139,43 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 690533069567950304, guid: 65742bc0e0a5037438cd432525629c70, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5415794556387052122}
   m_SourcePrefab: {fileID: 100100000, guid: 65742bc0e0a5037438cd432525629c70, type: 3}
 --- !u!4 &5415794556387052119 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 56175528605866604, guid: 65742bc0e0a5037438cd432525629c70, type: 3}
   m_PrefabInstance: {fileID: 5415794556387052118}
   m_PrefabAsset: {fileID: 0}
+--- !u!54 &5415794556387052122
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1291525648}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

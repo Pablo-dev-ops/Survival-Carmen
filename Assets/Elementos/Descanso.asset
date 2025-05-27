@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nombre: 
   descripcion: 
+  icono: {fileID: 0}
   prefab: {fileID: 0}
+  tipo: 3
